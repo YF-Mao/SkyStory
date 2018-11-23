@@ -1,2 +1,2 @@
 # SkyStory
-just want to learn
+LESS IS MORE!
