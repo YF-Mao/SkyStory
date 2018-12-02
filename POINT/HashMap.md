@@ -41,3 +41,7 @@ for(Map.Entry<String, Employee> entry : staff.entrySet()) {
 	do something with key, value;
 }
 ```
+
+## 参考资料
+
+- [HashMap/ConcurrentHashMap](https://crossoverjie.top/2018/07/23/java-senior/ConcurrentHashMap/)
