@@ -104,7 +104,7 @@ public static void listAllFiles(File dir) {
 输出流只能从中写入数据，不能读取数据。通俗点讲，输出流都是写操作。
 
 
-### 3.节点流与处理流，从流的分工划分
+### 3.节点流与处理流，从流的分工划分(一下都以输入流InputStream为例)
 
 节点流，必须直接与指定的物理节点关联。处理流是使用了装饰者模式，为组件提供了额外的功能，来间接的操作节点流。
 
@@ -112,9 +112,76 @@ public static void listAllFiles(File dir) {
 
 |分类|字节输入流|字节输出流|字符输入流|字符输出流|
 | :--------: | :--------: | :--------: | :--------: | :--------: |
-|分类|字节输入流|字节输出流|字符输入流|字符输出流|
+|访问文件（硬盘）|FileInputStream|FileOutputStream|FileReader|FileWriter|
+|访问数组（内存）|ByteArrayInputStream|ByteArrayOutputStream|CharArrayReader|CharArrayWriter|
+|访问管道|PipedInputStream|PipedOutputStream|PipedReader|PipedWriter|
 
 - `FileInputStream`
+
+
+> 2.处理流
+
+处理流都是继承于FilterInputStream，为组件提供额为的功能。FilterInputStream则是属于装饰者，用于装饰组件的
+
+- [装饰者模式介绍]()
+
+|额外功能|字节输入流|字节输出流|字符输入流|字符输出流|
+| :--------: | :--------: | :--------: | :--------: | :--------: |
+|缓冲功能|BufferedInputStream|BufferedOutputStream|BufferedReader|BufferedWriter|
+|更多的数据类型|DataInputStream|DataOutputStream|||
+
+- 缓冲思想介绍：在BufferedInputStream中内置了一个缓冲区（数组），会一次性从文件中读取8192(2^12)个，存在缓存区中，程序读取时会从缓冲区中获取，直至全部都被使用过
+
+尽肯能的多使用处理流
+
+### 4.IO体系的基类方法介绍及使用
+
+> 1.`InputStream`
+
+- abstract int read()：Reads the next byte of data from the input stream.
+
+返回的字节数据可直接转化成int类型
+
+- int read(byte[] b)：Reads some number of bytes from the input stream and stores them into the buffer array b
+
+最多读取b.length长度的字节，返回实际读取的字节数
+
+- int read(byte[] b, int off, int len)：Reads up to len bytes of data from the input stream into an array of bytes.
+
+最多读取len长度的字节，从off位置开始放入b中，返回实际读取的字节数
+
+```java
+    /**
+     * 使用缓存功能实现文件的复制
+     * @author YF.Mao
+     * @param srcFile 源文件路径
+     * @param tgtFile 目标文件路径
+     * @throws IOException
+     *
+     */
+    public static void copyFile(String srcFile, String tgtFile) throws IOException{
+        InputStream is = new FileInputStream(srcFile);
+        OutputStream os = new FileOutputStream(tgtFile);
+        
+        BufferedInputStream bis = new BufferedInputStream(is);
+        BufferedOutputStream bos = new BufferedOutputStream(os);
+
+        byte[] b = new byte[1024 * 8];
+        int len;
+        while ((len = bis.read(b)) != -1) {
+            bos.write(b, 0, len);
+        }
+        bis.close();
+        bos.close();
+    }
+```
+
+> 2.`OutputStream`
+
+- void flush()：Flushes this output stream and forces any buffered output bytes to be written out.
+
+刷新缓存区
+
 
 ## 参考文献
 
