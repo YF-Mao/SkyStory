@@ -2,7 +2,7 @@
 # File文件与输入输出流的基本介绍
 
 目的：通过这次附件迁移来学习java中IO相关的知识，学习file类，以及搞清楚各种流的类型，以及如何
-正确的使用这些流。
+正确的使用这些流。-2018.12.01 YF.Mao
 
 ## 1.File文件的创建
 
@@ -63,6 +63,8 @@ public static void listAllFiles(File dir) {
     }
 }
 ```
+
+-[File文件示例](https://github.com/YF-Mao/SkyStory/blob/master/EXERCISE/src/io/BufferedTest.java)
 
 ## 2.流的分类
 
@@ -182,6 +184,9 @@ public static void listAllFiles(File dir) {
 
 刷新缓存区
 
+-[文件流使用示例](https://github.com/YF-Mao/SkyStory/blob/master/EXERCISE/src/io/BufferedTest.java)
+
+### 5.待补充（对象操作中的序列化、网络操作获取文件、NIO知识了解等）
 
 ## 参考文献
 
