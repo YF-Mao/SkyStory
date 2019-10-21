@@ -1,8 +1,7 @@
 # File文件读取与输入输出流
-# File文件与输入输出流的基本介绍
 
 目的：通过这次附件迁移来学习java中IO相关的知识，学习file类，以及搞清楚各种流的类型，以及如何
-正确的使用这些流。-2018.12.01 YF.Mao
+正确的使用这些流。	-2018.12.01 YF.Mao
 
 ## 1.File文件的创建
 
@@ -114,7 +113,7 @@ public static void listAllFiles(File dir) {
 
 |分类|字节输入流|字节输出流|字符输入流|字符输出流|
 | :--------: | :--------: | :--------: | :--------: | :--------: |
-|访问文件（硬盘）|FileInputStream|FileOutputStream|FileReader|FileWriter|
+|访问文件（磁盘）|FileInputStream|FileOutputStream|FileReader|FileWriter|
 |访问数组（内存）|ByteArrayInputStream|ByteArrayOutputStream|CharArrayReader|CharArrayWriter|
 |访问管道|PipedInputStream|PipedOutputStream|PipedReader|PipedWriter|
 
